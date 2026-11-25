@@ -1,0 +1,168 @@
+/* Portal da Intranet — estilos compartilhados. Sem fontes externas (a CSP só permite 'self'). */
+:root {
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --ink: #14202e;
+  --ink-soft: #4a5a6c;
+  --line: #d3dae3;
+  --primary: #0f5c6e;
+  --primary-ink: #ffffff;
+  --primary-hover: #0b4857;
+  --signal: #f2b705;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
+  --ok: #1b6b3a;
+  --ok-bg: #e6f4ea;
+  --focus: #1a73e8;
+  --radius: 10px;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1620;
+    --surface: #16212e;
+    --ink: #e8edf3;
+    --ink-soft: #a3b1c2;
+    --line: #2b3a4c;
+    --primary: #4fb3c8;
+    --primary-ink: #06222a;
+    --primary-hover: #7cc9da;
+    --danger: #ff8a80;
+    --danger-bg: #3a1c1a;
+    --ok: #7fd49a;
+    --ok-bg: #16301f;
+    --focus: #8ab4f8;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.55 var(--sans);
+}
+h1, h2 { font-family: var(--serif); font-weight: 700; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: 1.5rem; }
+p { margin: 0; }
+a { color: var(--primary); text-underline-offset: 3px; }
+a:hover { color: var(--primary-hover); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+[hidden] { display: none !important; }
+
+/* Cabeçalho */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.brand { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+.brand-mark { width: 1.9rem; height: 1.9rem; border-radius: 7px; background: var(--primary); position: relative; }
+.brand-mark::after { content: ""; position: absolute; inset: 7px 9px 7px 9px; border: 2px solid var(--primary-ink); border-radius: 3px; border-top-width: 6px; }
+.topbar nav { display: flex; gap: .5rem; align-items: center; }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 2.75rem; padding: .6rem 1.2rem;
+  border: 2px solid var(--primary); border-radius: var(--radius);
+  background: var(--primary); color: var(--primary-ink);
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background-color .15s ease;
+}
+.btn:hover { background: var(--primary-hover); border-color: var(--primary-hover); color: var(--primary-ink); }
+.btn-secondary { background: transparent; color: var(--primary); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary); }
+.btn[disabled] { opacity: .65; cursor: progress; }
+.btn-block { width: 100%; }
+
+/* Landing */
+.hero {
+  flex: 1; display: grid; align-items: center; gap: 3rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  max-width: 72rem; width: 100%; margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem);
+}
+.hero-copy { display: grid; gap: 1.25rem; justify-items: start; }
+.hero-copy p.lead { color: var(--ink-soft); font-size: 1.15rem; max-width: 34rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .5rem; }
+.guarantees { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .6rem; color: var(--ink-soft); max-width: 34rem; }
+.guarantees li { padding-left: 1.4rem; position: relative; }
+.guarantees li::before { content: ""; position: absolute; left: 0; top: .55em; width: .7rem; height: .7rem; border-radius: 50%; background: var(--signal); }
+
+/* Crachá (elemento visual do hero) */
+.badge-wrap { display: grid; place-items: center; }
+.badge {
+  width: min(100%, 17rem); background: var(--surface); border: 1px solid var(--line);
+  border-radius: 18px; padding: 2.4rem 1.6rem 1.6rem; position: relative;
+  box-shadow: 0 18px 40px -22px rgba(15, 40, 60, .55); transform: rotate(-2.5deg);
+}
+.badge::before { content: ""; position: absolute; top: .9rem; left: 50%; width: 3.6rem; height: .75rem; margin-left: -1.8rem; border-radius: 99px; background: var(--bg); border: 1px solid var(--line); }
+.badge-photo { width: 5.2rem; height: 5.2rem; border-radius: 50%; background: var(--primary); margin: 0 auto 1.2rem; position: relative; overflow: hidden; }
+.badge-photo::before { content: ""; position: absolute; left: 50%; top: 22%; width: 2rem; height: 2rem; margin-left: -1rem; border-radius: 50%; background: var(--primary-ink); opacity: .9; }
+.badge-photo::after { content: ""; position: absolute; left: 50%; bottom: -1.3rem; width: 4rem; height: 3rem; margin-left: -2rem; border-radius: 50%; background: var(--primary-ink); opacity: .9; }
+.badge-line { height: .7rem; border-radius: 99px; background: var(--line); margin: .55rem auto; }
+.badge-line.w1 { width: 70%; background: var(--ink); opacity: .85; }
+.badge-line.w2 { width: 50%; }
+.badge-stripe { margin-top: 1.4rem; height: 2.3rem; border-radius: 8px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px); opacity: .8; }
+.badge-status { display: block; text-align: center; margin-top: 1rem; font-size: .85rem; color: var(--ok); font-weight: 600; }
+
+/* Páginas de formulário */
+.page-center { flex: 1; display: grid; place-items: center; padding: 2rem 1rem; }
+.card {
+  width: 100%; max-width: 30rem; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 14px; padding: clamp(1.4rem, 4vw, 2.2rem);
+  display: grid; gap: 1.25rem;
+}
+.card .intro { color: var(--ink-soft); }
+form { display: grid; gap: 1.1rem; }
+.field { display: grid; gap: .35rem; }
+label { font-weight: 600; font-size: .95rem; }
+input {
+  width: 100%; min-height: 2.9rem; padding: .6rem .8rem; font: inherit; color: var(--ink);
+  background: var(--bg); border: 2px solid var(--line); border-radius: 8px;
+}
+input:hover { border-color: var(--ink-soft); }
+input[aria-invalid="true"] { border-color: var(--danger); }
+.hint { font-size: .85rem; color: var(--ink-soft); }
+.field-error { font-size: .88rem; color: var(--danger); min-height: 0; }
+.field-error:empty { display: none; }
+.password-row { position: relative; }
+.password-row input { padding-right: 5.2rem; }
+.toggle-pass {
+  position: absolute; right: .35rem; top: 50%; transform: translateY(-50%);
+  border: 0; background: transparent; color: var(--primary); font: inherit; font-weight: 600;
+  padding: .45rem .6rem; border-radius: 6px; cursor: pointer;
+}
+.alert { padding: .8rem 1rem; border-radius: 8px; font-size: .95rem; border: 1px solid transparent; }
+.alert-error { background: var(--danger-bg); color: var(--danger); border-color: var(--danger); }
+.alert-ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok); }
+.switch { text-align: center; color: var(--ink-soft); font-size: .95rem; }
+
+/* Painel */
+.panel { width: 100%; max-width: 44rem; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem); display: grid; gap: 1.5rem; }
+.profile { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .6rem 1.5rem; }
+.profile dt { color: var(--ink-soft); }
+.profile dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; }
+  .badge-wrap { order: -1; }
+  .badge { width: 12.5rem; padding-top: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Títulos e textos (classes em vez de style="" porque a CSP bloqueia estilos inline) */
+.page-title { font-size: 1.9rem; }
+.panel-title { font-size: 2rem; }
+.section-title { margin-bottom: .75rem; }
+.muted-intro { color: var(--ink-soft); margin-bottom: 1rem; }

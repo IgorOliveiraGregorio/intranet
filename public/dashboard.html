@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel — Portal da Intranet</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Portal da Intranet</a>
+    <nav aria-label="Conta">
+      <button class="btn btn-secondary" type="button" id="logout" disabled>Sair</button>
+    </nav>
+  </header>
+  <main class="panel">
+    <h1 id="greeting" class="panel-title">Carregando…</h1>
+    <div id="alert" class="alert alert-error" role="alert" hidden></div>
+
+    <section id="profile-section" hidden aria-labelledby="profile-title">
+      <h2 id="profile-title" class="section-title">Seus dados</h2>
+      <dl class="profile">
+        <dt>Usuário</dt><dd id="p-username"></dd>
+        <dt>E-mail</dt><dd id="p-email"></dd>
+        <dt>Telefone</dt><dd id="p-phone"></dd>
+        <dt>Conta criada em</dt><dd id="p-created"></dd>
+      </dl>
+    </section>
+
+    <section id="security-section" hidden aria-labelledby="security-title">
+      <h2 id="security-title" class="section-title">Segurança</h2>
+      <p class="muted-intro">Se usou um computador compartilhado, encerre todas as sessões abertas.</p>
+      <div class="actions">
+        <button class="btn btn-secondary" type="button" id="logout-all">Sair de todos os dispositivos</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>
